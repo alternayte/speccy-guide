@@ -29,7 +29,8 @@ Customers who pay by card at checkout.
   Acceptance: a test provider that fails once with a 503 gives one successful payment.
 - **REQ-002:** The system MUST NOT charge a customer twice for one order.
   Acceptance: a test provider that times out after it charges gives one charge.
-- **REQ-003:** The system SHOULD show "Your payment is taking longer than usual" after 5 seconds.
+- The system SHOULD show "Your payment is taking longer than usual" after 5 seconds.
+- TBD: what the page shows after the third retry.
 
 ## Dependencies
 
