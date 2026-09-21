@@ -1,0 +1,6 @@
+waivers:
+  - check: lint.placeholder
+    section: [Payment retries, Requirements]
+    reason: The wait message moves to the checkout PRD, which ships first.
+    section_hash: sha256:c57eccd43db394c9b10cdb01ccf0c3b3d0db41d0ba2bd7c57c19a3c4631d82f7
+    requested_by: alternayte
