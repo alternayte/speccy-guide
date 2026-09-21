@@ -1,0 +1,11 @@
+# Written by speccy init --github.
+map:
+  - glob: "docs/prd-*.md"
+    profile: prd
+  - glob: "docs/sdd-*.md"
+    profile: sdd
+link_rules:
+  - "docs/sdd-{name}.md implements docs/prd-{name}.md"
+adoption:
+  relaxed:
+    - lint.passive-voice
