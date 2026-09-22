@@ -4,6 +4,8 @@ map:
     profile: prd
   - glob: "docs/sdd-*.md"
     profile: sdd
+  - glob: notes/*.md
+    profile: sdd
 link_rules:
   - "docs/sdd-{name}.md implements docs/prd-{name}.md"
 adoption:
