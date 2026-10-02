@@ -91,3 +91,5 @@ provider times out after it charges, and the test expects one charge (REQ-002).
 ## Open questions
 
 None.
+
+The retry limit is TBD. The request is retried by the client.
