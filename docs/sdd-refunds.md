@@ -9,6 +9,11 @@ title: Refunds — design
 
 The payment service refunds a paid order when support asks for it.
 
+## Non-goals
+
+- Partial refunds of one line of an order.
+- Refunds to a card other than the one that paid.
+
 ## Decisions
 
 - **DEC-001:** The payment service owns refunds, because it holds the provider credentials.
