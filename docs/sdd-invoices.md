@@ -23,4 +23,4 @@ The billing service listens for paid orders and stores the PDF in object storage
 
 ## Failure handling
 
-If the PDF does not render, the service logs the error.
+If the PDF does not render, the service logs the error and tries again after 10 minutes, 3 times at most.
