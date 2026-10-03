@@ -19,7 +19,7 @@ The export job reads the payment tables and writes a CSV to the finance bucket.
 
 ## Interfaces
 
-The CSV has one row per money movement. Finance defines the columns later.
+The CSV has one row per money movement, with the columns date, order_id, kind (payment, refund or fee), amount_cents and currency.
 
 ## Failure handling
 
