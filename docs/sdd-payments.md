@@ -27,7 +27,7 @@ design covers REQ-001 and REQ-002 of the PRD.
 
 ## Components
 
-The payment service calls the provider and records each attempt. The checkout service waits
+The payment service calls the provider and records each attempt. The checkout service blocks and waits
 for the result. The API contract is in [the OpenAPI file](assets/payments.openapi.yaml).
 
 ## Data model
