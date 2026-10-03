@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refunds — design: Not Build Ready</title>
+<style>
+:root{--ground:#fbfbfa;--surface:#fff;--sunken:#f3f3f1;--ink:#1b1b1a;--ink-2:#4a4a47;--ink-3:#686863;--line:#e6e6e2;--ok:#047a4a;--ok-soft:#e4f4ec;--bad:#b42318;--bad-soft:#fdecea;--warn:#8a5a00;--warn-soft:#fbf1dc}
+@media (prefers-color-scheme:dark){:root{--ground:#0c0d0d;--surface:#131414;--sunken:#0f1010;--ink:#ececea;--ink-2:#b3b3ae;--ink-3:#85857f;--line:#242525;--ok:#34d399;--ok-soft:#0f2a1f;--bad:#f87171;--bad-soft:#2c1414;--warn:#fbbf24;--warn-soft:#2a2110}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font:14px/1.45 ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:880px;margin:0 auto;padding:32px 20px 64px}
+.meta{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink-3)}
+h1{font-size:23px;margin:4px 0 0;letter-spacing:-.02em}
+.verdict{margin:20px 0;padding:16px 18px;border:1px solid;border-radius:10px}
+.verdict.build_ready{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 30%,transparent)}
+.verdict.not_build_ready{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 30%,transparent)}
+.verdict.stale{background:var(--warn-soft);border-color:color-mix(in srgb,var(--warn) 30%,transparent)}
+.verdict .label{font-size:19px;font-weight:650}
+.build_ready .label{color:var(--ok)}.not_build_ready .label{color:var(--bad)}.stale .label{color:var(--warn)}
+.counts{display:flex;flex-wrap:wrap;gap:4px 16px;margin-top:8px;font-size:12px;color:var(--ink-2)}
+.counts b{font-family:ui-monospace,monospace;color:var(--ink)}
+h2{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:32px 0 8px}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:500;color:var(--ink-3);font-size:12px}
+.num{text-align:right;font-family:ui-monospace,monospace}
+.finding{padding:10px 0;border-bottom:1px solid var(--line)}
+.lvl{font-size:11px;font-weight:600;letter-spacing:.03em}
+.lvl.MUST{color:var(--bad)}.lvl.SHOULD{color:var(--warn)}.lvl.INFO{color:var(--ink-3)}
+.slug,.where{font:12px ui-monospace,monospace;color:var(--ink-3)}
+blockquote{margin:6px 0 0;padding-left:8px;border-left:2px solid var(--line);font:12px ui-monospace,monospace;color:var(--ink-2);white-space:pre-wrap}
+.fix{margin-top:4px;font-size:12px;color:var(--ink-2)}
+.note{color:var(--ink-2);font-size:13px}
+.doc{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:24px 28px;font-size:16px;line-height:1.7}
+.doc>*+*{margin-top:16px}.doc h1,.doc h2,.doc h3,.doc h4{line-height:1.25;font-weight:650;letter-spacing:-.02em;color:var(--ink);text-transform:none;font-size:revert;margin-top:28px}
+.doc pre{background:var(--sunken);border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow:auto;font-size:13px;line-height:1.5}
+.doc code{font-family:ui-monospace,monospace;font-size:.875em}
+.doc table{font-size:14px}.doc img{max-width:100%}
+.doc blockquote{font:inherit;color:var(--ink-2);padding-left:14px;border-left-width:3px}
+.placeholder{background:var(--warn-soft);color:var(--warn);border-radius:3px;padding:0 3px}
+.frontmatter{font-size:12px!important;color:var(--ink-3)}
+footer{margin-top:32px;font-size:12px;color:var(--ink-3)}
+@media print{body{background:#fff}.doc{border:0;padding:0}}
+</style>
+</head>
+<body>
+<main>
+<p class="meta">docs/sdd-refunds · SDD · v1</p>
+<h1>Refunds — design</h1>
+
+<section class="verdict not_build_ready">
+  <div class="label">Not Build Ready</div>
+  <div>3 MUST findings to fix. SHOULD findings never block.</div>
+  <div class="counts">
+    <span><b>3</b> MUST</span><span><b>1</b> SHOULD</span><span><b>6</b> INFO</span>
+    <span>Score <b>78</b></span><span>Full review</span>
+    <span>Adoption mode: 1 checks relaxed</span>
+  </div>
+</section>
+<p class="note">Stages in this run: lint, rubric. The findings of the other stages stay from the last review that ran them.</p><p class="note">The doc names no size, so the review used size feature. Add &#34;size: feature&#34; to the frontmatter to fix it.</p><p class="note">Temperature 0: reviewer.</p>
+
+
+<h2>Score by category</h2>
+<table>
+  <tr><th>Category</th><th class="num">Score</th></tr>
+  <tr><td>Structure</td><td class="num">88</td></tr><tr><td>Clarity</td><td class="num">100</td></tr><tr><td>Completeness</td><td class="num">50</td></tr><tr><td>Evidence</td><td class="num">–</td></tr><tr><td>Precision</td><td class="num">–</td></tr><tr><td>Coherence</td><td class="num">0</td></tr>
+</table>
+<p class="note">The score is passed checks divided by applicable checks. It is for metrics only. It does not decide the verdict.</p>
+
+
+<h2>Findings (10)</h2>
+
+
+<div class="finding">
+  <span class="lvl MUST">MUST</span> <span class="slug">links.has-upstream</span> <span class="where">sdd-refunds.md:1</span>
+  <div>This SDD has no implements link to a PRD, and no standalone acknowledgement.</div>
+  
+  <blockquote>---
+type: sdd
+title: Refunds — design
+---
+</blockquote>
+  <div class="fix">Fix: Add a link under links: in the frontmatter, or a standalone: entry with the reason in the sidecar.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl MUST">MUST</span> <span class="slug">sdd.non-goals</span> <span class="where">sdd-refunds.md:1</span>
+  <div>There is no section or statement detailing non-goals or what the system will not do.</div>
+  
+  <blockquote>---
+type: sdd
+title: Refunds — design
+---
+</blockquote>
+  <div class="fix">Fix: Change the doc so that this holds: A section lists at least one thing the system will not do.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl MUST">MUST</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Non-goals&#34; section. The doc has none.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Non-goals&#34; with its content.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl SHOULD">SHOULD</span> <span class="slug">sdd.decisions.alternatives</span> <span class="where">sdd-refunds.md:14</span>
+  <div>Decision DEC-001 does not state any rejected alternative with a reason.</div>
+  <div class="where">Refunds — design › Decisions</div>
+  <blockquote>- **DEC-001:** The payment service owns refunds, because it holds the provider credentials.</blockquote>
+  <div class="fix">Fix: Change the doc so that this holds: Each decision lists at least one rejected alternative with a reason.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Data model&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Data model&#34; with its content, or leave it out at this size.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Failure modes&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Failure modes&#34; with its content, or leave it out at this size.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Limits&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Limits&#34; with its content, or leave it out at this size.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Security&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Security&#34; with its content, or leave it out at this size.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Testing&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Testing&#34; with its content, or leave it out at this size.</div>
+</div>
+
+<div class="finding">
+  <span class="lvl INFO">INFO</span> <span class="slug">lint.required-headings</span> <span class="where">sdd-refunds.md:6</span>
+  <div>The template requires the &#34;Open questions&#34; section at size app. This doc is size feature.</div>
+  <div class="where">Refunds — design</div>
+  <blockquote># Refunds — design</blockquote>
+  <div class="fix">Fix: Add a heading &#34;## Open questions&#34; with its content, or leave it out at this size.</div>
+</div>
+
+
+
+
+<h2>sdd-refunds.md</h2>
+<article class="doc"><pre class="frontmatter" data-src-start="0" data-src-end="44" data-line="1"><code>type: sdd
+title: Refunds — design
+</code></pre>
+<h1 id="refunds--design" data-src-start="45" data-src-end="66" data-line="6">Refunds — design</h1>
+<h2 id="context" data-src-start="67" data-src-end="78" data-line="8">Context</h2>
+<p data-src-start="79" data-src-end="185" data-line="10">The payment service refunds a paid order when support asks for it. Refunds go back to the card that paid.</p>
+<h2 id="decisions" data-src-start="186" data-src-end="199" data-line="12">Decisions</h2>
+<ul data-src-start="200" data-src-end="292" data-line="14">
+<li data-src-start="200" data-src-end="292" data-line="14"><strong>DEC-001:</strong> The payment service owns refunds, because it holds the provider credentials.</li>
+</ul>
+<h2 id="components" data-src-start="293" data-src-end="307" data-line="16">Components</h2>
+<p data-src-start="308" data-src-end="392" data-line="18">The support tool calls the payment service. The payment service calls the provider.</p>
+<h2 id="interfaces" data-src-start="393" data-src-end="407" data-line="20">Interfaces</h2>
+<p data-src-start="408" data-src-end="502" data-line="22"><code>POST /orders/{orderId}/refund</code> takes an amount and returns 200 when the provider accepts it.</p>
+<h2 id="failure-handling" data-src-start="503" data-src-end="523" data-line="24">Failure handling</h2>
+<p data-src-start="524" data-src-end="584" data-line="26">When the provider times out, the service tries again later.</p>
+</article>
+
+
+<footer>Speccy report, made 3 October 2026, 09:44 UTC.</footer>
+</main>
+</body>
+</html>
